@@ -2,7 +2,19 @@ package com.example.unitywrapper;
 
 public interface ISpeech
 {
-    public void onReceivedSpeech(String text);
+    public  void OnDebugCallback(String text);
 
-    public  void onDebugCallback(String text);
+    public void OnSpeechRecognitionStarted();
+
+    public void OnSpeechRecognitionFinalResult(String text);
+
+    public void OnReadyForSpeech();
+
+    public void OnBeginningOfSpeech();
+
+    public void OnEndOfSpeech();
+
+    public void OnSpeechRecognitionStopped();
+
+    public void OnSpeechRecognitionError(String errorMsg);
 }

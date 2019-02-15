@@ -27,10 +27,16 @@ final class SpeechRecognitionListener implements RecognitionListener {
     }
 
     @Override
-    public void onReadyForSpeech(Bundle bundle) {}
+    public void onReadyForSpeech(Bundle bundle)
+    {
+        onSpeechRecognitionListener.OnReadyForSpeech(bundle);
+    }
 
     @Override
-    public void onBeginningOfSpeech() {}
+    public void onBeginningOfSpeech()
+    {
+        onSpeechRecognitionListener.OnBeginningOfSpeech();
+    }
 
     @Override
     public void onRmsChanged(float v) {}
@@ -39,7 +45,10 @@ final class SpeechRecognitionListener implements RecognitionListener {
     public void onBufferReceived(byte[] bytes) {}
 
     @Override
-    public void onEndOfSpeech() {}
+    public void onEndOfSpeech()
+    {
+        onSpeechRecognitionListener.OnEndOfSpeech();
+    }
 
     @Override
     public void onError(int i) {

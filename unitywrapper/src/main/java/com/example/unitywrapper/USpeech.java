@@ -1,6 +1,7 @@
 package com.example.unitywrapper;
 
 import android.content.Context;
+import android.os.Bundle;
 
 
 public class USpeech implements OnSpeechRecognitionPermissionListener, OnSpeechRecognitionListener
@@ -14,61 +15,85 @@ public class USpeech implements OnSpeechRecognitionPermissionListener, OnSpeechR
         speechRecognition = new SpeechRecognition(unityContext);
         speechRecognition.setSpeechRecognitionPermissionListener(this);
         speechRecognition.setSpeechRecognitionListener(this);
+        //speechRecognition.useOnlyOfflineRecognition(offline);
         speechCallback = unitySpeechCallback;
+    }
+
+    public void SetOffline(boolean offlineState)
+    {
+        speechRecognition.useOnlyOfflineRecognition(offlineState);
     }
 
     public void StartSpeechRecognition()
     {
         speechRecognition.startSpeechRecognition();
-        speechCallback.onDebugCallback("Starting.");
+        //speechCallback.OnDebugCallback("startSpeechRecognition");
     }
 
     public  void  StopSpeechRecognition()
     {
-        speechCallback.onDebugCallback("Stopping.");
+        //speechCallback.OnDebugCallback("StopSpeechRecognition");
         speechRecognition.stopSpeechRecognition();
     }
 
     @Override
     public void onPermissionGranted()
     {
-        speechCallback.onDebugCallback("onPermissionGranted.");
+        speechCallback.OnDebugCallback("onPermissionGranted");
     }
 
     @Override
     public void onPermissionDenied()
     {
-        speechCallback.onDebugCallback("onPermissionDenied.");
+        speechCallback.OnDebugCallback("onPermissionDenied");
     }
 
     @Override
     public void OnSpeechRecognitionStarted()
     {
-        speechCallback.onDebugCallback("OnSpeechRecognitionStarted.");
+        speechCallback.OnSpeechRecognitionStarted();
     }
 
     @Override
     public void OnSpeechRecognitionStopped()
     {
-        speechCallback.onDebugCallback("OnSpeechRecognitionStopped.");
+        speechCallback.OnSpeechRecognitionStopped();
     }
 
     @Override
     public void OnSpeechRecognitionFinalResult(String finalSentence)
     {
-        speechCallback.onDebugCallback("OnSpeechRecognitionFinalResult.");
-        speechCallback.onReceivedSpeech(finalSentence);
+        //speechCallback.OnDebugCallback("OnSpeechRecognitionFinalResult");
+        speechCallback.OnSpeechRecognitionFinalResult(finalSentence);
     }
 
     @Override
     public void OnSpeechRecognitionCurrentResult(String currentWord)
     {
-        speechCallback.onDebugCallback("OnSpeechRecognitionCurrentResult.");
+        //speechCallback.onDebugCallback("OnSpeechRecognitionCurrentResult");
     }
 
     @Override
     public void OnSpeechRecognitionError(int errorCode, String errorMsg)
     {
-        speechCallback.onDebugCallback("OnSpeechRecognitionError.");
+        speechCallback.OnSpeechRecognitionError(errorMsg);
+    }
+
+    @Override
+    public void OnReadyForSpeech(Bundle bundle)
+    {
+        speechCallback.OnReadyForSpeech();
+    }
+
+    @Override
+    public void OnBeginningOfSpeech()
+    {
+        speechCallback.OnBeginningOfSpeech();
+    }
+
+    @Override
+    public void OnEndOfSpeech()
+    {
+        speechCallback.OnEndOfSpeech();
     }
 }

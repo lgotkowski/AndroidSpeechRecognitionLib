@@ -1,5 +1,7 @@
 package com.example.unitywrapper;
 
+import android.os.Bundle;
+
 /**
  * Created by Maxwell on 14-Jan-18.
  */
@@ -53,4 +55,10 @@ public interface OnSpeechRecognitionListener {
      * @param errorMsg The description of the error
      */
     void OnSpeechRecognitionError(int errorCode, String errorMsg);
+
+    void OnReadyForSpeech(Bundle bundle);
+
+    void OnBeginningOfSpeech();
+
+    void OnEndOfSpeech();
 }
